@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://mathsbot.com/puzzles/fourOpsPuzzle -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Jonathan Hall">
+        <link rel="stylesheet" href="./Four Operations Puzzle_files/main.css">
+        <script src="./Four Operations Puzzle_files/utilities.js"></script>
+        <meta name="description" content="Four Operations Puzzle. Use the rules of BIDMAS to fill the grid with digits from 1 to 9. An enrichment activity for teaching maths.">
+        <link rel="icon" type="image/png" href="https://mathsbot.com/media/favicon192.png" sizes="192x192">
+        <link rel="apple-touch-icon" href="https://mathsbot.com/media/favicon192.png" sizes="192x192">
+        <title>Four Operations Puzzle</title>
+        <script>
+            var showingAnswers = false;
+            var operations = new Array();
+            var digits = new Array();
+
+            var total = new Array();
+
+            function getOperations() {
+                var allowedOps = new Array();
+                if (addSelect.checked) {
+                    allowedOps.push("+");
+                }
+                if (subtractSelect.checked) {
+                    allowedOps.push("-");
+                }
+                if (multiplySelect.checked) {
+                    allowedOps.push("&#215;");
+                }
+                if (divideSelect.checked) {
+                    allowedOps.push("&divide;");
+                }
+                if (allowedOps.length == 0) {
+                    allowedOps.push("+");
+                    addSelect.checked = true;
+                }
+                operations = new Array();
+                for (var i = 0; i < 12; i++) {
+                    operations.push(allowedOps[getRandom(0, allowedOps.length - 1)]);
+                }
+            }
+            function getDigits() {
+                digits = new Array();
+                for (var i = 0; i < 9; i++) {
+                    var digit = new Object;
+                    digit.value = i + 1;
+                    digit.showing = false;
+                    digits.push(digit);
+                }
+                jumbleArray(digits);
+            }
+            function getTotals() {
+                total = new Array();
+                total.push(operate(digits[0].value, operations[0], digits[1].value, operations[1], digits[2].value));
+                total.push(operate(digits[3].value, operations[2], digits[4].value, operations[3], digits[5].value));
+                total.push(operate(digits[6].value, operations[4], digits[7].value, operations[5], digits[8].value));
+                total.push(operate(digits[0].value, operations[6], digits[3].value, operations[9], digits[6].value));
+                total.push(operate(digits[1].value, operations[7], digits[4].value, operations[10], digits[7].value));
+                total.push(operate(digits[2].value, operations[8], digits[5].value, operations[11], digits[8].value));
+            }
+            function revealTiles() {
+                var revealed = 0;
+                while (revealed < revealedSelect.value) {
+                    var i = getRandom(0, digits.length - 1)
+                    if (digits[i].showing == false) {
+                        toggleAnswer(i);
+                        revealed++;
+                    }
+                }
+            }
+            function createPuzzle() {
+                var reroll = true;
+                var attempts = 0;
+                if (negativeSelect.checked) {
+                    var negatives = true;
+                }
+                if (decimalSelect.checked) {
+                    var decimals = true;
+                }
+                while (reroll == true) {
+                    getOperations();
+                    getDigits();
+                    getTotals();
+                    reroll = false;
+                    for (var i = 0; i < total.length; i++) {
+                        if (total[i] < 0 && !negatives) {
+                            reroll = true;
+                        }
+                        if (Math.round(total[i]) != total[i] && !decimals) {
+                            reroll = true;
+                        }
+                        if ((Math.round(100 * total[i]) / 100) != total[i]) {
+                            reroll = true;
+                        }
+                    }
+                    attempts++;
+                    if (attempts > 5000) {
+                        reroll = false;
+                    }
+                }
+
+
+                var rows = 6;
+                var sheet = "";
+                for (i = 0; i < rows - 1; i++) {
+                    sheet += "<div class='row'>";
+                    if (i % 2 == 0) {
+                        sheet += "<div onclick='toggleAnswer(" + (i / 2 * 3) + ")' class='questionBox border digit'>";
+                        sheet += "<div id='" + (i / 2 * 3) + "' class='tile'></div></div>";
+                        sheet += "<div class='questionBox border'>";
+                        sheet += "<div class='tile'>" + operations[i / 2 * 2] + "</div></div>";
+                        sheet += "<div onclick='toggleAnswer(" + (i / 2 * 3 + 1) + ")' class='questionBox border digit'>";
+                        sheet += "<div id='" + (i / 2 * 3 + 1) + "' class='tile'></div></div>";
+                        sheet += "<div class='questionBox border'>";
+                        sheet += "<div class='tile'>" + operations[i / 2 * 2 + 1] + "</div></div>";
+                        sheet += "<div onclick='toggleAnswer(" + (i / 2 * 3 + 2) + ")' class='questionBox border digit'>";
+                        sheet += "<div id='" + (i / 2 * 3 + 2) + "' class='tile'></div></div>";
+                        sheet += "<div class='questionBox border total'>";
+                        sheet += "<div class='tile'>= " + total[i / 2] + "</div></div>";
+                    } else {
+                        sheet += "<div class='questionBox border'>";
+                        sheet += "<div class='tile'>" + operations[(i + 1) / 2 * 3 + 3] + "</div></div>";
+                        sheet += "<div class='blank border'>";
+                        sheet += "<div class='tile'></div></div>";
+                        sheet += "<div class='questionBox border'>";
+                        sheet += "<div class='tile'>" + operations[(i + 1) / 2 * 3 + 4] + "</div></div>";
+                        sheet += "<div class='blank border'><div class='tile'></div></div>";
+                        sheet += "<div class='questionBox border'>";
+                        sheet += "<div class='tile'>" + operations[(i + 1) / 2 * 3 + 5] + "</div></div>";
+                        sheet += "<div class='blank border'><div class='tile'></div></div>";
+                    }
+                    sheet += "</div>";
+                }
+                sheet += "<div class='row'>";
+                for (i = 0; i < 3; i++) {
+                    sheet += "<div class='questionBox border total'>";
+                    sheet += "<div class='tile'>= " + total[i + 3] + "</div></div>";
+                    sheet += "<div class='blank border'><div class='tile'></div></div>";
+                }
+                sheet += "</div>";
+                if (attempts > 5000) {
+                    sheet = "<div class='border error'>";
+                    sheet += "<p>No puzzle found!</p>";
+                    sheet += "Please refine your options and try again.</p>"
+                    sheet += "</div>";
+                }
+                puzzle.innerHTML = sheet;
+                revealTiles();
+                checkRemaining();
+            }
+            function jumbleArray(array) {
+                var iterations = array.length;
+                for (var i = 0; i < iterations; i++) {
+                    var x = getRandom(0, array.length - 1);
+                    var temp = array[x];
+                    array[x] = array[i];
+                    array[i] = temp;
+                }
+                return array;
+            }
+            function operate(x, op1, y, op2, z) {
+                var total = 0;
+                if ((op2 == "&#215;" || op2 == "&divide;") && (op1 == "+" || op1 == "-")) {
+                    switch (op2) {
+                        case "&#215;":
+                            total = y * z;
+                            break;
+                        case "&divide;":
+                            total = y / z;
+                            break;
+                    }
+                    switch (op1) {
+                        case "+":
+                            total = x + total;
+                            break;
+                        case "-":
+                            total = x - total;
+                            break;
+                        case "&#215;":
+                            total = x * total;
+                            break;
+                        case "&divide;":
+                            total = x / total;
+                            break;
+                    }
+                } else {
+                    switch (op1) {
+                        case "+":
+                            total = x + y;
+                            break;
+                        case "-":
+                            total = x - y;
+                            break;
+                        case "&#215;":
+                            total = x * y;
+                            break;
+                        case "&divide;":
+                            total = x / y;
+                            break;
+                    }
+                    switch (op2) {
+                        case "+":
+                            total = total + z;
+                            break;
+                        case "-":
+                            total = total - z;
+                            break;
+                        case "&#215;":
+                            total = total * z;
+                            break;
+                        case "&divide;":
+                            total = total / z;
+                            break;
+                    }
+                }
+                return total;
+            }
+            function toggleAnswer(i) {
+                if (digits[i].showing) {
+                    document.getElementById(i).innerHTML = "";
+                    digits[i].showing = false;
+                } else {
+                    document.getElementById(i).innerHTML = digits[i].value;
+                    digits[i].showing = true;
+                }
+                checkRemaining();
+            }
+            function checkRemaining() {
+                var left = "";
+                var temp = [];
+                for (var i = 0; i < digits.length; i++) {
+                    if (!digits[i].showing) {
+                        temp.push(digits[i].value);
+                    }
+                }
+                temp.sort(function (a, b) {
+                    return a - b;
+                });
+                for (var i = 0; i < temp.length; i++) {
+                    left += temp[i] + ", ";
+                }
+                left = left.slice(0, -2);
+                if (temp.length > 0) {
+                    remaining.innerHTML = "Digits Left: " + left + ".";
+                } else {
+                    remaining.innerHTML = "Puzzle Complete.";
+                }
+            }
+            function toggleAnswers() {
+                if (showingAnswers) {
+                    for (var i = 0; i < digits.length; i++) {
+                        document.getElementById(i).innerHTML = "";
+                        digits[i].showing = false;
+                    }
+                    answerButton.value = "Show Solution";
+                    showingAnswers = false;
+                } else {
+                    for (i = 0; i < digits.length; i++) {
+                        document.getElementById(i).innerHTML = digits[i].value;
+                        digits[i].showing = true;
+                    }
+                    showingAnswers = true;
+                    answerButton.value = "Hide Solution";
+                }
+            }
+        </script>
+        <style>
+            div.row {
+                max-width: 800px;
+                margin: auto;
+                overflow: auto;
+            }
+            div.questionBox {
+                height: 11vh;
+                font-size: 6vh;
+                width: 16%;
+                float: left;
+                display: table;
+                border-radius: 0.2em;
+            }
+            div.digit:hover {
+                color: #fff;
+                background-color: #959;
+                cursor: pointer;
+            }
+            div.total {
+                color: #000;
+                background-color: #afa;
+                font-size: 4vh;
+            }
+            div.tile {
+                display: table-cell;
+                vertical-align: middle;
+            }
+            div.error {
+                background-color: #fff;
+                font-size: 8vh;
+            }
+            div.blank {
+                height: 11vh;
+                font-size: 6vh;
+                width: 16%;;
+                float: left;
+                display: table;
+                background-color: #515;
+                border: none;
+                box-shadow: none;
+            }
+            #remaining {
+                color: #fff;
+                font-size: 2.5em;
+                text-align: center;
+                margin: 0.2em;
+            }
+            #puzzle {
+                width: 100%;
+                margin: 0% auto;
+            }
+        </style>
+    </head>
+    <body onload="createPuzzle();">
+        <!-- Google tag (gtag.js) -->
+<script async="" src="./Four Operations Puzzle_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JYHV7BKFZS');
+</script>        <section class="controls border">
+            <h1>Four Operations Puzzle</h1>
+            <p>
+                Fill each of the tiles with the digits 1 to 9.
+                Each digit can only be used once.
+            </p>
+            <div>
+                <label for="revealedSelect">Initial tiles revealed:</label>
+                <select id="revealedSelect">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option selected="" value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+                <label for="addSelect">Addition</label>
+                <input type="checkbox" checked="" id="addSelect">
+                <label for="subtractSelect">Subtraction</label>
+                <input type="checkbox" checked="" id="subtractSelect">
+                <label for="multiplySelect">Multiplication</label>
+                <input type="checkbox" checked="" id="multiplySelect">
+                <label for="divideSelect">Division</label>
+                <input type="checkbox" checked="" id="divideSelect">
+            </div>
+            <div>
+                <label for="negativeSelect">Negative totals?</label>
+                <input type="checkbox" id="negativeSelect">
+                <label for="decimalSelect">Decimal totals?</label>
+                <input type="checkbox" id="decimalSelect">
+                <input type="button" value="New Puzzle" onclick="createPuzzle()">
+                <input type="button" value="Show Solution" id="answerButton" onclick="toggleAnswers()">
+            </div>
+        </section>
+        <div id="remaining">Digits Left: 3, 5, 6, 7, 8, 9.</div> 
+        <section id="puzzle" class="noSelect"><div class="row"><div onclick="toggleAnswer(0)" class="questionBox border digit"><div id="0" class="tile"></div></div><div class="questionBox border"><div class="tile">+</div></div><div onclick="toggleAnswer(1)" class="questionBox border digit"><div id="1" class="tile">2</div></div><div class="questionBox border"><div class="tile">-</div></div><div onclick="toggleAnswer(2)" class="questionBox border digit"><div id="2" class="tile"></div></div><div class="questionBox border total"><div class="tile">= -2</div></div></div><div class="row"><div class="questionBox border"><div class="tile">+</div></div><div class="blank border"><div class="tile"></div></div><div class="questionBox border"><div class="tile">-</div></div><div class="blank border"><div class="tile"></div></div><div class="questionBox border"><div class="tile">-</div></div><div class="blank border"><div class="tile"></div></div></div><div class="row"><div onclick="toggleAnswer(3)" class="questionBox border digit"><div id="3" class="tile"></div></div><div class="questionBox border"><div class="tile">×</div></div><div onclick="toggleAnswer(4)" class="questionBox border digit"><div id="4" class="tile">4</div></div><div class="questionBox border"><div class="tile">-</div></div><div onclick="toggleAnswer(5)" class="questionBox border digit"><div id="5" class="tile"></div></div><div class="questionBox border total"><div class="tile">= 23</div></div></div><div class="row"><div class="questionBox border"><div class="tile">×</div></div><div class="blank border"><div class="tile"></div></div><div class="questionBox border"><div class="tile">+</div></div><div class="blank border"><div class="tile"></div></div><div class="questionBox border"><div class="tile">×</div></div><div class="blank border"><div class="tile"></div></div></div><div class="row"><div onclick="toggleAnswer(6)" class="questionBox border digit"><div id="6" class="tile">1</div></div><div class="questionBox border"><div class="tile">+</div></div><div onclick="toggleAnswer(7)" class="questionBox border digit"><div id="7" class="tile"></div></div><div class="questionBox border"><div class="tile">+</div></div><div onclick="toggleAnswer(8)" class="questionBox border digit"><div id="8" class="tile"></div></div><div class="questionBox border total"><div class="tile">= 12</div></div></div><div class="row"><div class="questionBox border total"><div class="tile">= 11</div></div><div class="blank border"><div class="tile"></div></div><div class="questionBox border total"><div class="tile">= 3</div></div><div class="blank border"><div class="tile"></div></div><div class="questionBox border total"><div class="tile">= -47</div></div><div class="blank border"><div class="tile"></div></div></div></section>
+            <footer id="footer">
+    <div>
+        <small>
+            <a href="https://mathsbot.com/">Home</a> |
+            <a href="https://mathsbot.com/membership">Membership</a> |
+            <a href="https://mathsbot.com/privacy">Privacy</a> |
+            <a href="https://mathsbot.com/about">Contact</a> |
+            © 2013 - 2024        </small>
+    </div>
+</footer>    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'8d7e1feb3f3aac7c',t:'MTcyOTgxNjUwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;" src="./Four Operations Puzzle_files/saved_resource.html"></iframe>
+</body></html>
