@@ -1,0 +1,304 @@
+:root {
+    --purple: #515;
+    --radius: 0.3em;
+    --lightShade: #eee;
+    --hoverShade: #ddd;
+}
+body {
+    font-family: "Arial";
+    background-color: #515;
+}
+section {
+    overflow: auto;
+}
+h1, h2 {
+    font-family: 'Arial', sans-serif;
+    font-weight: normal;
+    padding: 0.3%;
+    margin: 0.3%;
+}
+body {
+    margin: 0;
+}
+div.nav ul {
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+}
+div.nav li {
+    float: left;
+    list-style: none;
+    text-align: center;
+    margin: 0.25%;
+    width: calc(94% / 8);
+    font-size: 0.9em;
+    box-sizing: border-box;
+}
+div.nav a {
+    display: inline-block;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    width: 100%;
+    border-radius: 0.3em;
+    text-decoration: none;
+    color: #515;
+}
+div.nav a:hover {
+    background-color: #959;
+    color: #fff;
+    transition: 0.2s;
+}
+.iconMenu {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    height: 1.5em;
+    z-index: 1;
+}
+img.icon, input.icon {
+    height: 100%;
+    cursor: pointer;
+    border-radius: 0.2em;
+    border: 2px solid #515;
+    margin: 0;
+    padding: 0;
+}
+input.icon {
+    position: relative;
+    top: -6px;
+    width: 2.1em;
+    height: 2.1em;
+}
+img.icon:hover, input.icon:hover {
+    border: 2px solid #959;
+    background: #ffffff;
+}
+div.homeIcon {
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    height: 1.6em;
+}
+div.search {
+    background: #ffffff;
+    border: 2px solid #515;
+    position: absolute;
+    right: 6px;
+    top: 2px;
+    padding: 0.15em;
+}
+div.search:hover {
+    border: 2px solid #959;
+    transition: 0.2s;
+}
+div.search input {
+    float: left;
+    max-width: 10em;
+    color: #000000;
+    height: 1.6em;
+    border: none;
+    font-size: 1em;
+}
+div.search input:hover {
+    background: #fff;
+}
+div.search input:focus {
+    outline: none;
+}
+img, video {
+    max-width: 100%;
+    max-height: 100%;
+}
+ul {
+    list-style-position: inside;
+}
+table {
+    margin: 1%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 0.1em;
+    border: 1px solid #000;
+}
+header {
+    text-align: center;
+    color: #fff;
+}
+footer {
+    padding: 0.2em;
+    text-align: center;
+    color: #fff;
+}
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+footer a:hover {
+    text-decoration: underline;
+}
+input, button {
+    background-color: #fff;
+    color: #515;
+    border-radius: 0.4em;
+}
+input:hover, button:hover {
+    background-color: #515;
+    color: #fff;
+    transition: 0.2s;
+}
+select {
+    max-width: 15em;
+}
+.border {
+    margin: 0.3%;
+    padding: 0.3%;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 0.5em;
+    box-shadow: 4px 4px 4px #303;
+    text-align: center;
+}
+input.fullScreen {
+    border-radius: 0;
+    padding: 0;
+    font-size: 1.2em;
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    width: 1.6em;
+    z-index: 1;
+    text-align: center;
+}
+.box {
+    margin: 0.5%;
+    padding: 0.5%;
+    border: 1px solid black;
+    text-align: center;
+}
+.ad {
+    text-align: center;
+    background-color: #fff;
+    margin: 0.6%;
+}
+.noSelect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+}
+section.controls {
+    background-color: #959;
+    color: #fff;
+    position: relative;
+    touch-action: manipulation;
+}
+section.controls h1 {
+    margin: 0.1em;
+    font-size: 1.4em;
+}
+section.controls label, section.controls select, section.controls input, section.controls p, section.controls button {
+    font-size: 1.2em;
+    margin: 0.2em;
+}
+div.leftMenu {
+    text-align: right;
+    float: left;
+    width: 25%;
+}
+div.rightMenu {
+    text-align: left;
+    float: right;
+    width: 25%;
+}
+div.middleMenu {
+    display: inline-block;
+    width: 50%;
+}
+div.copyButtons {
+    display: inline-block; 
+}
+div.copyButtons input {
+    min-width: 2.2em;
+    margin: 0.1em;
+}
+div.questionBox {
+    color: #000;
+    background-color: #fff;
+}
+.questionTable {
+    margin: 0.4em auto;
+}
+.questionTable td {
+    padding: 0.2em;
+    font-size: 0.75em;
+    width: 1.4em;
+}
+section.display {
+    font-size: 1.2em;
+    margin: 0.2em;
+    background-color: #959;
+    color: #fff;
+}
+div.smaller {
+    font-size: 0.75em;
+}
+.refreshQ, .hideQ {
+    cursor: pointer;
+}
+#content {
+    overflow: auto;
+}
+.signUp {
+    margin: 0.5em auto;
+    padding: 0.4em;
+    width: 640px;
+    background: #fff;
+}
+#secret input {
+    background: #ffffff;
+    width: 8em;
+    color: #515;
+}
+#secret input::placeholder {
+    text-align: center;
+}
+@media print {
+    section.controls, footer {
+        display: none !important;
+    }
+    body {
+        background-color: #fff;
+    }
+    .border {
+        box-shadow: none;
+    }
+    .refreshQ {
+        display: none;
+    }
+    input.fullScreen {
+        display: none;
+    }
+}
+@media (max-width: 800px){
+    div.leftMenu {
+        margin-top: 1em;
+        text-align: center;
+        float: left;
+        width: 50%;
+    }
+    div.rightMenu {
+        margin-top: 1em;
+        text-align: center;
+        float: left;
+        width: 50%;
+    }
+    div.middleMenu {
+        width: 100%;
+    }
+    div.homeIcon {
+        display: none;
+    }
+    div.search {
+        display: none;
+    }
+}

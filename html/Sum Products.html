@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://mail.mathsbot.com/printables/sumProducts -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Jonathan Hall">
+        <link rel="icon" type="image/png" href="https://mail.mathsbot.com/media/favicon192.png" sizes="192x192">
+        <link rel="stylesheet" href="./Sum Products_files/main.css">
+        <link rel="stylesheet" href="./Sum Products_files/printables.css">
+        <script src="./Sum Products_files/utilities.js"></script>
+        <meta name="description" content="Printable sum product templates.">
+        <title>Sum Products</title>
+        <style>
+            .controls div {
+                margin-top: 0.3em;
+                margin-bottom: 0.3em;
+            }
+            table {
+                max-width: 95%;
+            }
+            td, th {
+                display: inline-block;
+                width: 3vw;
+                margin: 0.1em;
+                border: 1px solid #000000;
+            }
+            td.blank {
+                border: none;
+            }
+            span.copyButtons input {
+                cursor: pointer;
+                background: none;
+                border: none;
+                color: #fff;
+                outline: none;
+                margin: 0;
+                text-align: center;
+                width: 1em;
+                padding: 0;
+            }
+            span.copyButtons label {
+                margin: 0.2em;
+                padding: 0;
+            }
+            span.copyButtons input:hover {
+                color: #fcf;
+            }
+            span.copyButtons input:active {
+                color: #dad;
+            }
+            .toggle {
+                cursor: pointer;
+            }
+            .mult {
+                margin-left: 0.25em;
+                margin-right: 0.25em;
+            }
+            #varySelect, #minSelect, #maxSelect {
+                width: 2.5em;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Google tag (gtag.js) -->
+<script async="" src="./Sum Products_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JYHV7BKFZS');
+</script>        <section id="controls" class="controls border">
+            <div>
+                <h1>Sum Products</h1>
+                <div>
+                    <span class="copyButtons">
+                        <label for="rowSelect">Rows:</label>
+                        <input class="arrow" onclick="rowSelect.value--;
+                                createSheet()" type="button" value="◄">
+                        <input id="rowSelect" type="hidden" oninput="createSheet()" value="4">
+                        <label id="rowLabel">4</label>
+                        <input onclick="rowSelect.value++;
+                                createSheet()" type="button" value="►">
+                        <label for="columnSelect">Columns:</label>
+                        <input onclick="columnSelect.value--;
+                                createSheet()" type="button" value="◄">
+                        <input id="columnSelect" type="hidden" oninput="createSheet()" value="5">
+                        <label id="columnLabel">5</label>
+                        <input onclick="columnSelect.value++;
+                                createSheet()" type="button" value="►">
+                    </span>
+                    <input type="button" value="New Values" onclick="createSheet()">
+                    <input type="button" value="Print" onclick="window.print()">
+                </div>
+                <div>
+                    <label for="varySelect">Constants:</label>
+                    <input type="number" oninput="createSheet()" min="2" max="4" value="2" id="varySelect">
+                    <label for="minSelect">Min:</label>
+                    <input type="number" oninput="createSheet()" min="-100" max="100" value="-10" id="minSelect">
+                    <label for="maxSelect">Max:</label>
+                    <input type="number" oninput="createSheet()" min="-100" max="100" value="10" id="maxSelect">
+                    <label for="primeSelect">Non-composite:</label>
+                    <input type="checkbox" onclick="createSheet()" id="primeSelect">
+                </div>
+                <div>
+                    <label for="sumSelect">Sum</label>
+                    <input type="checkbox" checked="" onclick="displaySheet()" id="sumSelect">
+                    <label for="productSelect">Product</label>
+                    <input type="checkbox" checked="" onclick="displaySheet()" id="productSelect">
+                    <span id="opt0" style="display: inline-block;">
+                        <label for="var0">a</label>
+                        <input type="checkbox" onclick="displaySheet()" id="var0">
+                    </span>
+                    <span id="opt1" style="display: inline-block;">
+                        <label for="var1">b</label>
+                        <input type="checkbox" onclick="displaySheet()" id="var1">
+                    </span>
+                    <span id="opt2" style="display: none;">
+                        <label for="var2">c</label>
+                        <input type="checkbox" onclick="displaySheet()" id="var2">
+                    </span>
+                    <span id="opt3" style="display: none;">
+                        <label for="var3">d</label>
+                        <input type="checkbox" onclick="displaySheet()" id="var3">
+                    </span>
+
+                </div>
+            </div>
+        </section>
+        <div class="questionBox border">
+            <div id="sheet"><div class="printable" style="width: 20%; font-size: 1.5em"><div id="0,0"><table><tbody><tr><td class="blank"></td><td colspan="0">1</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">-12</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="0,1"><table><tbody><tr><td class="blank"></td><td colspan="0">2</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">-35</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="0,2"><table><tbody><tr><td class="blank"></td><td colspan="0">3</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">-4</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="0,3"><table><tbody><tr><td class="blank"></td><td colspan="0">-11</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">30</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="0,4"><table><tbody><tr><td class="blank"></td><td colspan="0">19</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">90</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="1,0"><table><tbody><tr><td class="blank"></td><td colspan="0">-2</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">-35</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="1,1"><table><tbody><tr><td class="blank"></td><td colspan="0">0</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">-64</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="1,2"><table><tbody><tr><td class="blank"></td><td colspan="0">-2</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">0</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="1,3"><table><tbody><tr><td class="blank"></td><td colspan="0">-5</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">-24</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="1,4"><table><tbody><tr><td class="blank"></td><td colspan="0">8</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">-9</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="2,0"><table><tbody><tr><td class="blank"></td><td colspan="0">-8</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">7</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="2,1"><table><tbody><tr><td class="blank"></td><td colspan="0">10</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">16</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="2,2"><table><tbody><tr><td class="blank"></td><td colspan="0">-4</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">-5</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="2,3"><table><tbody><tr><td class="blank"></td><td colspan="0">-8</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">0</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="2,4"><table><tbody><tr><td class="blank"></td><td colspan="0">3</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">-28</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="3,0"><table><tbody><tr><td class="blank"></td><td colspan="0">11</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">30</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="3,1"><table><tbody><tr><td class="blank"></td><td colspan="0">3</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">-54</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="3,2"><table><tbody><tr><td class="blank"></td><td colspan="0">-6</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">0</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="3,3"><table><tbody><tr><td class="blank"></td><td colspan="0">-12</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">35</td><td class="blank"></td></tr></tbody></table></div></div><div class="printable" style="width: 20%; font-size: 1.5em"><div id="3,4"><table><tbody><tr><td class="blank"></td><td colspan="0">3</td><td class="blank"></td></tr><tr><td colspan="1"></td><td colspan="1"></td></tr><tr><td class="blank"></td><td colspan="0">-10</td><td class="blank"></td></tr></tbody></table></div></div></div>
+        </div>
+        <footer id="footer">
+    <div>
+        <small>
+            <a href="https://mail.mathsbot.com/">Home</a> |
+            <a href="https://mail.mathsbot.com/membership">Membership</a> |
+            <a href="https://mail.mathsbot.com/privacy">Privacy</a> |
+            <a href="https://mail.mathsbot.com/about">Contact</a> |
+            © 2013 - 2024        </small>
+    </div>
+</footer>    
+    <script>
+        var timestables;
+        var rows;
+        var columns;
+        var context;
+        var canvas;
+        function createSheet() {
+            timestables = [];
+            if (rowSelect.value < 1) {
+                rowSelect.value = 1;
+            }
+            if (rowSelect.value > 8) {
+                rowSelect.value = 8;
+            }
+            if (columnSelect.value < 1) {
+                columnSelect.value = 1;
+            }
+            if (columnSelect.value > 8) {
+                columnSelect.value = 8;
+            }
+            rows = rowSelect.value;
+            columns = columnSelect.value;
+            rowLabel.innerHTML = rows;
+            columnLabel.innerHTML = columns;
+            for (var i = 0; i < 4; i++) {
+                var id = "opt" + i;
+                document.getElementById(id).style.display = "none";
+            }
+            for (var i = 0; i < varySelect.value; i++) {
+                id = "opt" + i;
+                document.getElementById(id).style.display = "inline-block";
+            }
+
+
+            var data = "";
+            sheet.innerHTML = "";
+            var width = 100 / columns;
+            var size = Math.min(4, 6 / (columns * 0.8));
+            for (var i = 0; i < rows; i++) {
+                for (var j = 0; j < columns; j++) {
+                    data += "<div class='printable' style='width: " + width + "%; font-size: " + size + "em'>";
+                    data += "<div id='" + i + "," + j + "'></div>";
+                    data += "</div>";
+                }
+            }
+            sheet.innerHTML += data;
+            createTables();
+            drawTables();
+        }
+        function createTables() {
+            var max = varySelect.value;
+            for (var i = 0; i < rows; i++) {
+                for (var j = 0; j < columns; j++) {
+                    var values = [];
+                    for (var k = 0; k < max; k++) {
+                        var attempts = 0;
+                        do {
+                            var x = getRandom(parseInt(minSelect.value), parseInt(maxSelect.value));
+                            attempts++;
+                            if (attempts > 100) {
+                                x = 2;
+                            }
+                        } while ((!isPrime(Math.abs(x)) && Math.abs(x) !== 1) && primeSelect.checked);
+                        values.push(x);
+                    }
+                    timestables.push(new Table((i + "," + j), values));
+                }
+            }
+        }
+        function drawTables() {
+            for (var i = 0; i < timestables.length; i++) {
+                timestables[i].display();
+            }
+        }
+        function toggleAll() {
+            var count = 0;
+            for (var i = 1; i <= 12; i++) {
+                if (document.getElementById("m" + i).checked) {
+                    count++;
+                }
+            }
+            for (var i = 1; i <= 15; i++) {
+                if (count > 0) {
+                    document.getElementById("m" + i).checked = false;
+                } else {
+                    document.getElementById("m" + i).checked = true;
+                }
+            }
+            createSheet();
+        }
+        function displaySheet() {
+            for (var i = 0; i < timestables.length; i++) {
+                timestables[i].display();
+            }
+        }
+        function Table(id, values) {
+            this.id = id;
+            this.values = values;
+            this.product = 1;
+            this.sum = 0;
+            for (var i = 0; i < this.values.length; i++) {
+                this.product *= this.values[i];
+                this.sum += this.values[i];
+            }
+
+            this.display = function () {
+                var letter = ['a', 'b', 'c', 'd'];
+                var data = "<table>";
+                data += "<tr>";
+                data += "<td class='blank'></td><td colspan='" + (this.values.length - 2) + "'>";
+                if (sumSelect.checked) {
+                    data += this.sum;
+                }
+                data += "</td><td class='blank'></td>";
+                data += "</tr>";
+                data += "<tr>";
+                for (var i = 0; i < this.values.length; i++) {
+                    data += "<td colspan='1'>";
+                    var id = "var" + i;
+                    if (document.getElementById(id).checked) {
+                        data += values[i];
+                    }
+                    data += "</td>";
+                }
+                data += "</tr>";
+                data += "<tr>";
+                data += "<td class='blank'></td><td colspan='" + (this.values.length - 2) + "'>";
+                if (productSelect.checked) {
+                    data += this.product;
+                }
+                data += "</td><td class='blank'></td>";
+                data += "</tr>";
+                data += "</table>";
+                document.getElementById(this.id).innerHTML = data;
+            };
+        }
+        createSheet();
+    </script>
+</body></html>

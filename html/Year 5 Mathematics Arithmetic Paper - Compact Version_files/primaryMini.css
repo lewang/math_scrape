@@ -1,0 +1,131 @@
+body {
+    -webkit-print-color-adjust: exact;
+    background: #555;
+    font-family: "Arial";
+}
+#paper {
+    margin: auto;
+    padding: 0.1em;
+    background: #fff;
+    max-width: 1000px;
+}
+input.answerBox {
+    margin: 0.2em;
+    border: 2px solid #0168B3;
+    text-align: center;
+    font-size: 1em;
+    width: 4em;
+}
+.controls {
+    top: 0;
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 0.4em;
+    background: #555;
+    z-index: 1;
+}
+.controls button, .controls input {
+    margin: 0.2em;
+    text-align: center;
+    font-size: 1.2em;
+}
+.memberOffer {
+    background: #fff;
+    box-sizing: border-box;
+    margin: auto;
+    margin-top: 0.4em;
+    padding: 0.4em;
+    text-align: center;
+    max-width: 1000px;
+}
+#score {
+    border: 1px solid #000;
+    margin: 0.2em;
+    padding: 0.1em;
+    font-size: 1.2em;
+    background: #eee;
+    position: relative;
+}
+#colourSelect {
+    position: relative;
+    top: 1px;
+    width: 1.4em;
+    height: 1.4em;
+}
+table.qlaTable {
+    text-align: center;
+    margin: 1em auto;
+    margin-top: 3em;
+    width: 95%;
+    font-size: 1.1em;
+    border-collapse: collapse;
+}
+.qlaTable th {
+    background: #B9C9E6;
+}
+.qlaTable td, .qlaTable th {
+    border: 2px solid #000;
+    padding: 0.25em;
+}
+.qlaTable input {
+    background: #ffffff;
+}
+td.qlaIndex {
+    color: #0168B3;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+}
+td.qlaQ {
+    text-align: left;
+}
+input.markBox {
+    border-radius: 1.5em;
+    border: 1px solid #000;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    text-align: center;
+    pointer-events: none;
+}
+.correct {
+    background: #aaffaa;
+}
+.incorrect {
+    background: #ffaaaa;
+}
+#totalQ {
+    width: 2.5em;
+}
+@media print {
+    @page {size: portrait}
+    body {
+        background: none;
+    }
+    div.paper {
+        padding: 0;
+    }
+    .controls {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 0.6em;
+    }
+    div.question {
+        font-size: 2.1em;
+    }
+    div.marking {
+        font-size: 1em;
+    }
+    input.markBox {
+        width: 15px;
+        height: 15px;
+        bottom: 40px;
+        font-size: 1em;
+    }
+}
