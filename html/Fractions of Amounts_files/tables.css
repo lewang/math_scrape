@@ -1,0 +1,46 @@
+.questionBox {
+    overflow: auto;
+    min-height: 78vh;
+}
+table {
+    margin: 0.5% auto;
+}
+th {
+    background: #ddd; 
+    font-weight: normal;
+}
+th, td {
+    cursor: pointer;
+    padding: 0.2em;
+}
+th {
+    min-width: 2em;
+    font-size: 1.4em;
+}
+tr:nth-child(2n + 3) {
+    background: #f0f0f0
+}
+td:first-child {
+    border: none;
+}
+td {
+    font-size: 1.4em;
+    width: 6em;
+    max-width: 6em;
+    height: 1.4em;
+    overflow: hidden;
+}
+td:hover {
+    background-color: #ddd;
+}
+#rowSelect {
+    width: 2.5em;
+    text-align: center;
+}
+.blank {
+    border: none;
+    background: none;
+}
+label {
+    padding-left: 0.7em;
+}
